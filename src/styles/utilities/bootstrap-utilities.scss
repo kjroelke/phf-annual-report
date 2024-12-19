@@ -1,0 +1,93 @@
+// Custom.scss
+
+@import "bootstrap/scss/functions";
+
+$grid-breakpoints: (
+	xs: 0,
+	sm: 480px,
+	md: 767px,
+	lg: 979px,
+	xl: 1200px,
+);
+
+// Options:
+$enable-dark-mode: false;
+$enable-deprecation-messages: false;
+$enable-validation-icons: false;
+
+@import "bootstrap/scss/variables";
+// @import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+// Remove multiple utilities with a comma-separated list
+$utilities: map-remove(
+	$utilities,
+	"align",
+	"float",
+	"shadow",
+	"focus-ring",
+	"border",
+	"border-top",
+	"border-end",
+	"border-bottom",
+	"border-start",
+	"border-color",
+	"subtle-border-color",
+	"border-style",
+	"border-opacity",
+	"max-width",
+	"viewport-width",
+	"min-viewport-width",
+	"max-height",
+	"viewport-height",
+	"min-viewport-height",
+	"font-family",
+	"font-size",
+	"line-height",
+	"white-space",
+	"word-wrap",
+	"color",
+	"text-opacity",
+	"text-color",
+	"link-opacity",
+	"link-offset",
+	"link-underline",
+	"link-underline-opacity",
+	"background-color",
+	"bg-opacity",
+	"subtle-background-color",
+	"gradient",
+	"user-select",
+	"pointer-events",
+	"rounded",
+	"rounded-top",
+	"rounded-end",
+	"rounded-bottom",
+	"rounded-start"
+);
+
+// Modify the remaining utilities
+$utilities: map-merge(
+	$utilities,
+	(
+		"object-fit":
+			map-merge(
+				map-get($utilities, "object-fit"),
+				(
+					responsive: false,
+				)
+			),
+		"display":
+			map-merge(
+				map-get($utilities, "display"),
+				(
+					values: inline inline-block block grid flex inline-flex none,
+					print: false,
+				)
+			),
+	)
+);
+
+@import "bootstrap/scss/utilities/api";

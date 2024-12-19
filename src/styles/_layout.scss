@@ -1,0 +1,26 @@
+/**
+* Layout
+* Sets Cornerstone's layout styles to mirror WordPress Content & Wide Sizes
+* Also sets a default gutter to 1.25rem (defined in theme.json)
+*/
+.x-container {
+	&.max {
+		max-width: var(--wp--style--global--wide-size);
+	}
+	&.width {
+		width: calc(100% - var(--wp--custom--gutters));
+
+		& > * {
+			max-width: 100%;
+		}
+	}
+	&.offset {
+		max-width: 100%;
+	}
+}
+
+.x-row {
+	& > .x-row-inner {
+		margin-inline: calc((var(--wp--custom--gutters) / 2) * -1);
+	}
+}

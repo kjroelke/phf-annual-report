@@ -1,0 +1,9 @@
+/**
+* Reset
+* Used to undo Pro Theme's Styles, if necessary
+*/
+@use "node_modules/normalize.css/normalize.css";
+
+html {
+	line-height: var(--wp--custom--line-height);
+}

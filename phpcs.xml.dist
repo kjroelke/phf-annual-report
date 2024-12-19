@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Choctaw PHP Standard" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+
+    <description>A custom set of rules to check for a WordPress project by K1's dev team.</description>
+
+    <config name="minimum_wp_version" value="6.0"/>
+
+    <!-- Exclude WP Core folders and files from being checked. -->
+    <exclude-pattern>/docroot/wp-admin/*</exclude-pattern>
+    <exclude-pattern>/docroot/wp-includes/*</exclude-pattern>
+    <exclude-pattern>/docroot/wp-*.php</exclude-pattern>
+    <exclude-pattern>/docroot/index.php</exclude-pattern>
+    <exclude-pattern>/docroot/xmlrpc.php</exclude-pattern>
+    <exclude-pattern>/docroot/wp-content/plugins/*</exclude-pattern>
+    <exclude-pattern>/wp-config-sample.php</exclude-pattern>
+    <exclude-pattern>/wp-content/themes/*/dist/*.asset.php</exclude-pattern>
+
+    <!-- Exclude the Composer Vendor directory. -->
+    <exclude-pattern>/vendor/*</exclude-pattern>
+
+
+    <!-- Exclude the Node Modules directory. -->
+    <exclude-pattern>/node_modules/*</exclude-pattern>
+
+    <!-- Exclude minified Javascript files. -->
+    <exclude-pattern>*.min.js</exclude-pattern>
+
+    <!-- Include the WordPress-Extra standard. -->
+    <rule ref="WordPress-Extra">
+        <exclude name="WordPress.WP.I18n" />
+        <exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
+        <exclude name="WordPress.WP.I18n.TranslatorsCommentWrongStyle" />
+    </rule>
+
+    <!-- Let's also check that everything is properly documented. -->
+    <rule ref="WordPress-Docs"></rule>
+
+</ruleset>

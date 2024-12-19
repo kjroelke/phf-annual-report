@@ -1,0 +1,29 @@
+{
+	"name": "kingdom-one/k1-blocks-child-theme",
+	"description": "a blocks-based child theme of Pro",
+	"type": "project",
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://wpackagist.org",
+			"only": [
+				"wpackagist-plugin/*",
+				"wpackagist-theme/*"
+			]
+		}
+	],
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"scripts": {
+		"phpcs": "phpcs . ./includes/ --extensions=php --ignore=*/vendor/*,*/build/* ",
+		"phpcbf": "phpcbf . ./includes/ --extensions=php --ignore=*/vendor/*,*/build/* "
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "*",
+		"php-stubs/acf-pro-stubs": "^6.2"
+	}
+}
