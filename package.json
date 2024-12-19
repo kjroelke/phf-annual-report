@@ -1,5 +1,5 @@
 {
-	"name": "k1-pro-child-theme-template",
+	"name": "pfh-annual-report",
 	"version": "1.0.0",
 	"description": "A template for generating a child theme for client sites.",
 	"prettier": "@wordpress/prettier-config",
@@ -15,19 +15,13 @@
 		"packages-update": "wp-scripts packages-update",
 		"start": "wp-scripts start"
 	},
-	"author": "Kingdom One",
+	"author": "K.J. Roelke",
 	"license": "GPL-2.0-or-later",
-	"devDependencies": {
-		"@wordpress/scripts": "^28.3.0",
-		"bootstrap": "^5.3.3",
-		"eslint-config-react-app": "^7.0.1"
-	},
-	"overrides": {
-		"lighthouse": "^12.1.0",
-		"puppeteer-core": "^22.13.1",
-		"ws": "^8.18.0"
-	},
 	"dependencies": {
 		"normalize.css": "^8.0.1"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.7.0",
+		"bootstrap": "^5.3.3"
 	}
 }

@@ -9,7 +9,28 @@
 			"customGradient": true,
 			"defaultGradients": false,
 			"defaultPalette": false,
-			"palette": [],
+			"palette": [
+				{
+					"slug": "primary",
+					"color": "#542988",
+					"name": "Primary"
+				},
+				{
+					"slug": "secondary",
+					"color": "#54595f",
+					"name": "Secondary"
+				},
+				{
+					"slug": "accent",
+					"color": "#7f5ea6",
+					"name": "Accent"
+				},
+				{
+					"slug":"body",
+					"color":"#444444",
+					"name":"Body"
+				}
+			],
 			"text": true,
 			"heading": true,
 			"button": true
