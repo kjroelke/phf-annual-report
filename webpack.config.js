@@ -6,6 +6,7 @@ module.exports = {
 		entry: {
 			global: `./src/index.ts`,
 			'utilities/bs-utilities': `./src/styles/utilities/bootstrap-utilities.scss`,
+			'admin/login': `./src/styles/admin/login.css`,
 		},
 		plugins: [
 			...defaultConfig.plugins,
