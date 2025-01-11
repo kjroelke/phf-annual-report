@@ -1,5 +1,5 @@
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config.js' );
-
+const RemoveEmptyScriptsPlugin = require( 'webpack-remove-empty-scripts' );
 module.exports = {
 	...defaultConfig,
 	...{
@@ -7,5 +7,11 @@ module.exports = {
 			global: `./src/index.ts`,
 			'utilities/bs-utilities': `./src/styles/utilities/bootstrap-utilities.scss`,
 		},
+		plugins: [
+			...defaultConfig.plugins,
+			new RemoveEmptyScriptsPlugin( {
+				stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
+			} ),
+		],
 	},
 };

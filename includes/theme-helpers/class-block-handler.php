@@ -3,10 +3,10 @@
  * Block Handler
  * Helper class for handling WordPress Blocks
  *
- * @package KingdomOne
+ * @package KJR_Dev
  */
 
-namespace KingdomOne;
+namespace KJR_Dev;
 
 /**
  * Class Block_Handler
@@ -31,10 +31,10 @@ class Block_Handler {
 	 */
 	public function register_patterns_category() {
 		register_block_pattern_category(
-			'kingdomone',
+			'KJR_Dev',
 			array(
-				'label'       => esc_html__( 'Kingdom One', 'kingdomone' ),
-				'description' => esc_html__( 'Custom Patterns built by Kingdom One', 'kingdomone' ),
+				'label'       => esc_html__( 'Kingdom One', 'KJR_Dev' ),
+				'description' => esc_html__( 'Custom Patterns built by Kingdom One', 'KJR_Dev' ),
 			)
 		);
 	}

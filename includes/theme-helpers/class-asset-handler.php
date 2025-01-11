@@ -3,10 +3,10 @@
  * Asset Handler
  * Enqueues styles and scripts needed for the theme
  *
- * @package KingdomOne
+ * @package KJR_Dev
  */
 
-namespace KingdomOne;
+namespace KJR_Dev;
 
 /**
  * Class Asset_Handler

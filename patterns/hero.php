@@ -1,11 +1,11 @@
 <?php
 /**
  * Title: Hero
- * Slug: kingdomone/hero
- * Categories: kingdomone
+ * Slug: KJR_Dev/hero
+ * Categories: KJR_Dev
  * Description: A hero block with a title, subtitle, and button. This is an example file. Delete me and add your own.
  *
- * @package KingdomOne
+ * @package KJR_Dev
  * @subpackage BlockPatterns
  */
 
