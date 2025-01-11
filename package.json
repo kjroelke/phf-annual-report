@@ -1,6 +1,6 @@
 {
 	"name": "phf-annual-report",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A template for generating a child theme for client sites.",
 	"prettier": "@wordpress/prettier-config",
 	"browserslist": [
@@ -22,6 +22,7 @@
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.8.1",
-		"bootstrap": "^5.3.3"
+		"bootstrap": "^5.3.3",
+		"webpack-remove-empty-scripts": "^1.0.4"
 	}
 }
