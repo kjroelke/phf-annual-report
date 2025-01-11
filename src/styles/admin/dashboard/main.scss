@@ -1,0 +1,52 @@
+/**
+* fork of wp-admin/css/colors/_admin.scss
+* @since WP 6.7.1
+*/
+
+@use "sass:color";
+@use "sass:string";
+@use "./variables" as *;
+@use "./mixins" as *;
+@use "./links";
+@use "./core-ui";
+@use "./forms";
+@use "./list-tables";
+@use "./pointers";
+@use "./media";
+@use "./themes";
+@use "./nav-menus";
+@use "./responsive";
+@use "./tiny-mce";
+@use "./customizer";
+
+/**
+ * This function name uses British English to maintain backward compatibility, as developers
+ * may use the function in their own admin CSS files. See #56811.
+ */
+@function url-friendly-colour($color) {
+	@return "%23" + string.slice("#{ $color }", 2, -1);
+}
+
+:root {
+	color-scheme: light dark;
+	--kjr-dark: #111;
+	--kjr-light: #f1f1f1;
+	--kjr-light-subtle: #aaaaaa;
+	--wp-submenu: #2c3338;
+	--wp-light-subtle: #f6f7f7;
+	--wp-dark: #1d2327;
+	--wp-dark-subtle: #50575e;
+	--wp-border-light: #c3c4c7;
+	--wp-body-color: #3c434a;
+	--wp-accent: #2271b1;
+	--kjr-accent: #4d8fbb;
+	--wp-input-border: #8c8f94;
+}
+body {
+	background-color: light-dark($body-background, var(--kjr-dark));
+	color: light-dark(var(--wp-body-color), var(--kjr-light));
+
+	:is(h1, h2, h3, h4, h5, h6) {
+		color: light-dark(var(--wp-dark), var(--kjr-light));
+	}
+}

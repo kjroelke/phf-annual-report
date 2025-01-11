@@ -1,0 +1,8 @@
+.wp-core-ui {
+	.button,
+	.button-secondary {
+		color: light-dark(var(--wp-accent), var(--kjr-accent));
+		border-color: light-dark(var(--wp-accent), var(--kjr-accent));
+		background-color: light-dark(var(--wp-light-subtle), var(--kjr-dark));
+	}
+}

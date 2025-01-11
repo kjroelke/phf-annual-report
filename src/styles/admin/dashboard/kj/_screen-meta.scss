@@ -1,0 +1,17 @@
+#screen-meta {
+	border-color: light-dark(var(--wp-border-light), var(--wp-submenu));
+	background-color: light-dark(white, var(--wp-dark));
+}
+
+#screen-meta-links .show-settings {
+	border-color: light-dark(var(--wp-border-light), var(--wp-submenu));
+	background-color: light-dark(white, var(--wp-dark-subtle));
+	color: light-dark(var(--wp-dark-subtle), white);
+}
+
+#contextual-help-back {
+	background-color: light-dark(#f0f6fc, var(--wp-dark));
+}
+.contextual-help-tabs a:not(.active a):hover {
+	color: light-dark(var(--wp-submenu), white);
+}

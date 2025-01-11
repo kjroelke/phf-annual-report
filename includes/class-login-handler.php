@@ -25,11 +25,12 @@ class Login_Handler {
 	 * Enqueue the custom CSS
 	 */
 	public function enqueue_css() {
+		$login_assets = require_once get_theme_file_path( '/build/admin/login.asset.php' );
 		wp_enqueue_style(
-			'pro-child',
-			get_theme_file_uri() . '/build/login.min.css',
-			array(),
-			null, // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+			'kjr-dark-wp-login',
+			get_theme_file_uri() . '/build/admin/login.css',
+			$login_assets['dependencies'],
+			$login_assets['version'],
 		);
 	}
 

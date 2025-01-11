@@ -1,0 +1,30 @@
+@use "sass:color";
+@use "./variables" as *;
+@use "./mixins" as *;
+
+/* List tables */
+
+.wrap .page-title-action,
+.wrap .page-title-action:active {
+	border: 1px solid $highlight-color;
+	color: $highlight-color;
+}
+
+.wrap .page-title-action:hover {
+	color: color.adjust($highlight-color, $lightness: -10%);
+	border-color: color.adjust($highlight-color, $lightness: -10%);
+}
+
+.wrap .page-title-action:focus {
+	border-color: color.adjust($highlight-color, $lightness: 10%);
+	color: color.adjust($highlight-color, $lightness: -20%);
+	box-shadow: 0 0 0 1px color.adjust($highlight-color, $lightness: 10%);
+}
+
+.view-switch a.current:before {
+	color: $menu-background;
+}
+
+.view-switch a:hover:before {
+	color: $menu-bubble-background;
+}

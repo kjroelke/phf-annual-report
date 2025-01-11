@@ -1,0 +1,11 @@
+@use "sass:color";
+@use "./variables" as *;
+@use "./mixins" as *;
+
+/* Nav Menus */
+
+.nav-menus-php .item-edit:focus:before {
+	box-shadow:
+		0 0 0 1px color.adjust($button-color, $lightness: 10%),
+		0 0 2px 1px $button-color;
+}

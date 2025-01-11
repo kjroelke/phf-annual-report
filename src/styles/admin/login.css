@@ -1,7 +1,21 @@
 :root {
 	color-scheme: light dark;
+	--dark: #333;
 }
 
 body {
 	background-color: light-dark(#f1f1f1, #111);
+}
+.login {
+	.message,
+	.notice,
+	.success,
+	form {
+		background-color: light-dark(white, var(--dark));
+		color: light-dark(var(--dark), #f1f1f1);
+	}
+	#backtoblog a,
+	#nav a {
+		color: light-dark(var(--dark), #f1f1f1);
+	}
 }

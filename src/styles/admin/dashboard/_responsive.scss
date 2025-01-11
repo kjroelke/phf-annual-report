@@ -1,0 +1,21 @@
+@use "./variables" as *;
+
+/* Responsive Component */
+
+div#wp-responsive-toggle a:before {
+	color: $menu-icon;
+}
+
+.wp-responsive-open div#wp-responsive-toggle a {
+	// ToDo: make inset border
+	border-color: transparent;
+	background: $menu-highlight-background;
+}
+
+.wp-responsive-open #wpadminbar #wp-admin-bar-menu-toggle a {
+	background: $menu-submenu-background;
+}
+
+.wp-responsive-open #wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
+	color: $menu-icon;
+}
