@@ -33,6 +33,12 @@ A Template repo to help spin up custom child themes for clients quickly.
 
 # Changelog
 
+## 0.4.0
+
+-   Removed K1 references
+-   Used `sass:map` namespaced functions in Bootstrap utility file
+-   Refactored Typography treatment to use native WordPress fluid type values
+
 ## 0.3.1
 
 -   Update `theme.json` to load proper line heights for headings in the Editor.
