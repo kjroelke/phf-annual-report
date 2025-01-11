@@ -3,10 +3,10 @@
  * Class Admin_Dashboard_Handler
  * Customize the WP Admin Dashboard
  *
- * @package KingdomOne
+ * @package KJR_Dev
  */
 
-namespace KingdomOne;
+namespace KJR_Dev;
 
 /**
  * Admin Dashboard Handler
@@ -64,16 +64,19 @@ class Admin_Dashboard_Handler {
 		wp_add_dashboard_widget(
 			'k1_dashboard_welcome_widget', // Widget slug.
 			'Welcome to ' . $the_title, // Widget title.
-			array( $this, 'k1_dashboard_welcome_widget_function' ) // Function name to display the widget.
+			array( $this, 'dashboard_welcome_widget_function' ) // Function name to display the widget.
 		);
 	}
 
 	/**
 	 * Initialize the function to output the contents of your new dashboard widget
 	 */
-	public function k1_dashboard_welcome_widget_function() {
+	public function dashboard_welcome_widget_function() {
 		$first_name = get_user_meta( wp_get_current_user()->ID, 'first_name', true );
-		$k1_email   = 'webdev@kingdomone.co';
-		echo "Hey {$first_name}! Welcome to the your site. If you have any troubles, questions, or dream features, be sure to reach out to us at <a href='mailto:{$k1_email}'>{$k1_email}</a>"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		if ( empty( $first_name ) ) {
+			$first_name = 'there';
+		}
+		$k1_email   = 'kj.roelke@gmail.com';
+		echo "Hey {$first_name}! Welcome to the your site. If you have any troubles, questions, or dream features, be sure to reach out at <a href='mailto:{$k1_email}'>{$k1_email}</a>"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }

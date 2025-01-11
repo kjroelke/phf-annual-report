@@ -2,10 +2,10 @@
 /**
  * Class Theme_Init
  *
- * @package KingdomOne
+ * @package KJR_Dev
  */
 
-namespace KingdomOne;
+namespace KJR_Dev;
 
 /**
  * Theme Initialization
@@ -56,7 +56,7 @@ class Theme_Init {
 		foreach ( $files as $file => $class ) {
 			require_once get_theme_file_path( "/includes/class-{$file}.php" );
 			if ( $class ) {
-				$class = "KingdomOne\\{$class}";
+				$class = "KJR_Dev\\{$class}";
 				new $class();
 			}
 		}

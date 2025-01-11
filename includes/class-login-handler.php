@@ -2,10 +2,10 @@
 /**
  * Customize Login Screen
  *
- * @package KingdomOne
+ * @package KJR_Dev
  */
 
-namespace KingdomOne;
+namespace KJR_Dev;
 
 /**
  * Login Handler
@@ -27,7 +27,7 @@ class Login_Handler {
 	public function enqueue_css() {
 		wp_enqueue_style(
 			'pro-child',
-			get_theme_file_uri() . '/css/dist/login.min.css',
+			get_theme_file_uri() . '/build/login.min.css',
 			array(),
 			null, // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		);

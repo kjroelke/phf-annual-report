@@ -1,5 +1,5 @@
 {
-	"name": "pfh-annual-report",
+	"name": "phf-annual-report",
 	"version": "1.0.0",
 	"description": "A template for generating a child theme for client sites.",
 	"prettier": "@wordpress/prettier-config",
@@ -21,7 +21,7 @@
 		"normalize.css": "^8.0.1"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.7.0",
+		"@wordpress/scripts": "^30.8.1",
 		"bootstrap": "^5.3.3"
 	}
 }
