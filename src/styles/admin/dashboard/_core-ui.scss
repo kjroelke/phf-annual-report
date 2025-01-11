@@ -6,8 +6,9 @@
 
 .wp-core-ui {
 	.button {
-		border-color: #7e8993;
-		color: #32373c;
+		color: light-dark(var(--wp-accent), var(--kjr-accent));
+		border-color: light-dark(var(--wp-accent), var(--kjr-accent));
+		background-color: light-dark(var(--wp-light-subtle), var(--kjr-dark));
 	}
 
 	.button.hover,
@@ -78,4 +79,14 @@
 	.wp-ui-text-icon {
 		color: $menu-icon;
 	}
+
+	select {
+		background-color: light-dark(white, black);
+		color: light-dark(var(--wp-submenu), var(--kjr-light));
+	}
+}
+
+.subsubsub a .count,
+.subsubsub a.current .count {
+	color: light-dark(#50575e, var(--kjr-light-subtle));
 }

@@ -3,10 +3,8 @@
 * @since WP 6.7.1
 */
 
-@use "sass:color";
-@use "sass:string";
 @use "./variables" as *;
-@use "./mixins" as *;
+
 @use "./links";
 @use "./core-ui";
 @use "./forms";
@@ -18,18 +16,15 @@
 @use "./responsive";
 @use "./tiny-mce";
 @use "./customizer";
-
-/**
- * This function name uses British English to maintain backward compatibility, as developers
- * may use the function in their own admin CSS files. See #56811.
- */
-@function url-friendly-colour($color) {
-	@return "%23" + string.slice("#{ $color }", 2, -1);
-}
+@use "./tables";
+@use "./kj/metabox";
+@use "./kj/screen-meta";
+// @use "./kj/buttons";
 
 :root {
 	color-scheme: light dark;
 	--kjr-dark: #111;
+	--kjr-dark-subtle: #333;
 	--kjr-light: #f1f1f1;
 	--kjr-light-subtle: #aaaaaa;
 	--wp-submenu: #2c3338;
@@ -42,11 +37,16 @@
 	--kjr-accent: #4d8fbb;
 	--wp-input-border: #8c8f94;
 }
-body {
+
+body:not(.block-editor-page) {
 	background-color: light-dark($body-background, var(--kjr-dark));
 	color: light-dark(var(--wp-body-color), var(--kjr-light));
 
 	:is(h1, h2, h3, h4, h5, h6) {
 		color: light-dark(var(--wp-dark), var(--kjr-light));
 	}
+}
+
+#wpfooter:not(.block-editor-page #wpfooter) {
+	color: light-dark(var(--wp-dark-subtle), var(--kjr-light-subtle));
 }

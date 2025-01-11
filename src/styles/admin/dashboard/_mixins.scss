@@ -4,6 +4,8 @@
 */
 
 @use "sass:color";
+@use "sass:string";
+
 /*
  * Button mixin- creates a button effect with correct
  * highlights/shadows, based on a base color.
@@ -41,4 +43,12 @@
 		box-shadow: inset 0 2px 5px -3px color.adjust($button-color, $lightness:
 					-50%);
 	}
+}
+
+/**
+ * This function name uses British English to maintain backward compatibility, as developers
+ * may use the function in their own admin CSS files. See #56811.
+ */
+@function url-friendly-colour($color) {
+	@return "%23" + string.slice("#{ $color }", 2, -1);
 }

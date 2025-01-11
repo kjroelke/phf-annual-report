@@ -1,0 +1,44 @@
+.comment-ays,
+.feature-filter,
+.popular-tags,
+.stuffbox,
+.widgets-holder-wrap,
+.wp-editor-container,
+p.popular-tags,
+table.widefat {
+	background: light-dark(white, var(--kjr-dark));
+}
+
+.alternate,
+.striped > tbody > :nth-child(odd),
+ul.striped > :nth-child(odd) {
+	background: light-dark(var(--wp-light-subtle), #222);
+}
+
+.widefat {
+	tfoot tr td,
+	tfoot tr th,
+	thead tr td,
+	thead tr th {
+		color: light-dark(var(--wp-submenu), var(--kjr-light));
+	}
+	td,
+	th {
+		color: light-dark(var(--wp-dark-subtle), var(--kjr-light));
+	}
+}
+
+th.sorted.asc a:focus .sorting-indicator.desc:before,
+th.sorted.asc:hover .sorting-indicator.desc:before,
+th.sorted.desc a:focus .sorting-indicator.asc:before,
+th.sorted.desc:hover .sorting-indicator.asc:before {
+	color: light-dark(var(--wp-dark), var(--kjr-light));
+}
+
+th.sorted.desc .sorting-indicator.desc:before {
+	color: light-dark(var(--wp-dark), var(--kjr-light));
+}
+
+th .comment-grey-bubble:before {
+	color: light-dark(var(--wp-dark), var(--kjr-light));
+}

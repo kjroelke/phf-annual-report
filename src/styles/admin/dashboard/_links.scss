@@ -1,9 +1,6 @@
-@use "sass:color";
 @use "./variables" as *;
-@use "./mixins" as *;
 
 /* Links */
-
 a {
 	color: light-dark($link, var(--kjr-accent));
 
@@ -11,6 +8,10 @@ a {
 	&:active,
 	&:focus {
 		color: $link-focus;
+	}
+
+	.subsubsub &.current {
+		color: light-dark(black, white);
 	}
 }
 
@@ -37,15 +38,9 @@ span.wp-media-buttons-icon:before {
 .media-modal .untrash-attachment,
 .wp-core-ui .button-link-delete {
 	color: #a00;
-}
 
-.media-modal .delete-attachment:hover,
-.media-modal .trash-attachment:hover,
-.media-modal .untrash-attachment:hover,
-.media-modal .delete-attachment:focus,
-.media-modal .trash-attachment:focus,
-.media-modal .untrash-attachment:focus,
-.wp-core-ui .button-link-delete:hover,
-.wp-core-ui .button-link-delete:focus {
-	color: #dc3232;
+	&:hover,
+	&:focus {
+		color: #dc3232;
+	}
 }
