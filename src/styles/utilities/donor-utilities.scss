@@ -1,0 +1,16 @@
+$theme-colors: (
+	"primary": var(--wp--preset--color--primary),
+	"secondary": var(--wp--preset--color--secondary),
+	"accent": var(--wp--preset--color--accent),
+	"body": var(--wp--preset--color--body),
+	"white": white,
+	"black": black,
+);
+@each $color, $value in $theme-colors {
+	.text-#{$color} {
+		color: $value;
+	}
+	.bg-#{$color} {
+		background-color: $value;
+	}
+}

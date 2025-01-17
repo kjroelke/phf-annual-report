@@ -33,7 +33,7 @@ class Asset_Handler {
 	 */
 	public function __construct( bool $with_utilities = false ) {
 		$this->include_utilities = $with_utilities;
-		$this->main_asset_id     = 'k1-global';
+		$this->main_asset_id     = 'kjr-global';
 	}
 
 	/**
@@ -57,30 +57,37 @@ class Asset_Handler {
 			$utilities['dependencies'],
 			$utilities['version']
 		);
+		$donor_utils = require_once get_stylesheet_directory() . '/build/utilities/donor-utilities.asset.php';
+		wp_register_style(
+			'kjr-donor-utilities',
+			get_stylesheet_directory_uri() . '/build/utilities/donor-utilities.css',
+			array( ...$donor_utils['dependencies'], 'bs-utilities' ),
+			$donor_utils['version']
+		);
 	}
 
 	/**
 	 * Enqueue the theme's styles and scripts
 	 */
 	private function enqueue_styles() {
-		$k1_global = require_once get_stylesheet_directory() . '/build/global.asset.php';
+		$kjr_global = require_once get_stylesheet_directory() . '/build/global.asset.php';
 
 		wp_enqueue_style(
 			$this->main_asset_id,
 			get_stylesheet_directory_uri() . '/build/global.css',
-			$this->get_dependencies( $k1_global, false, true ),
-			$k1_global['version']
+			$this->get_dependencies( $kjr_global, false, true ),
+			$kjr_global['version']
 		);
 		wp_enqueue_script(
 			$this->main_asset_id,
 			get_stylesheet_directory_uri() . '/build/global.js',
-			$this->get_dependencies( $k1_global, true, true ),
-			$k1_global['version'],
+			$this->get_dependencies( $kjr_global, true, true ),
+			$kjr_global['version'],
 			array( 'strategy' => 'defer' )
 		);
 		wp_localize_script(
 			$this->main_asset_id,
-			'k1SiteData',
+			'kjrSiteData',
 			array(
 				'root_url' => get_site_url(),
 			)
