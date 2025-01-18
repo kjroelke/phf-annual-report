@@ -10,7 +10,50 @@ $theme-colors: (
 	.text-#{$color} {
 		color: $value;
 	}
+	.text-hover--#{$color} {
+		color: $value;
+	}
 	.bg-#{$color} {
 		background-color: $value;
 	}
+	.border-#{$color} {
+		border-color: $value;
+	}
+	.btn-#{$color} {
+		background-color: $value;
+		border-color: $value;
+
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: transparent;
+			border-color: $value;
+			color: $value;
+		}
+	}
+}
+:root {
+	--kjr--transition-standard: var(--wp--custom--transition-timing)
+		var(--wp--custom--transition-easing);
+	--kjr-border-radius: 10px;
+}
+.btn {
+	display: block;
+	padding: 0.5rem 1rem;
+	border-radius: var(--kjr-border-radius);
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	border-width: 2px;
+	border-style: solid;
+	transition:
+		background-color var(--kjr--transition-standard),
+		color var(--kjr--transition-standard),
+		border-color var(--kjr--transition-standard);
+}
+.border {
+	border-width: 2px;
+	border-style: solid;
+	border-radius: var(--kjr-border-radius);
+	overflow: hidden;
 }

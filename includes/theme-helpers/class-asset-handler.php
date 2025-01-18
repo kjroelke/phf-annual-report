@@ -57,12 +57,19 @@ class Asset_Handler {
 			$utilities['dependencies'],
 			$utilities['version']
 		);
-		$donor_utils = require_once get_stylesheet_directory() . '/build/utilities/donor-utilities.asset.php';
+		$donor_utils = require_once get_stylesheet_directory() . '/build/modules/donor-lookup.asset.php';
 		wp_register_style(
-			'kjr-donor-utilities',
-			get_stylesheet_directory_uri() . '/build/utilities/donor-utilities.css',
-			array( ...$donor_utils['dependencies'], 'bs-utilities' ),
+			'kjr-donor-lookup',
+			get_stylesheet_directory_uri() . '/build/modules/donor-lookup.css',
+			array( ...$donor_utils['dependencies'], 'bs-utilities', 'kjr-global' ),
 			$donor_utils['version']
+		);
+		wp_register_script(
+			'kjr-donor-lookup',
+			get_stylesheet_directory_uri() . '/build/modules/donor-lookup.js',
+			array( ...$donor_utils['dependencies'], 'kjr-global' ),
+			$donor_utils['version'],
+			array( 'strategy' => 'defer' )
 		);
 	}
 
