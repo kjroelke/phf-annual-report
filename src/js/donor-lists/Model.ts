@@ -16,7 +16,7 @@ export default class Model {
 		}
 		if ( Array.isArray( names ) ) {
 			this.namesMap = new Map(
-				names.map( ( { name, id } ) => [ id, name ] )
+				names.map( ( { name, id } ) => [ name, id ] )
 			);
 		} else {
 			this.namesMap = new Map(

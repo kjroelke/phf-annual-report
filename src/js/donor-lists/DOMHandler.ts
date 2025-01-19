@@ -10,11 +10,13 @@ export default class DOMHandler {
 
 	private searchForm: HTMLFormElement;
 	private findDonor: ( name: string ) => FuseResult< Result >[] | null;
-	private namesMap: Map< string, string >;
+	private namesMap:
+		| Map< string, string >
+		| Map< string, Map< string, string > >;
 
 	constructor(
 		findDonor: ( name: string ) => FuseResult< Result >[] | null,
-		namesMap: Map< string, string >
+		namesMap: Map< string, string > | Map< string, Map< string, string > >
 	) {
 		this.findDonor = findDonor;
 		this.namesMap = namesMap;

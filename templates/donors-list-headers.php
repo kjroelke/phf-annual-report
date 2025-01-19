@@ -10,15 +10,7 @@ wp_enqueue_script( 'kjr-donor-lookup' );
 get_header();
 ?>
 <main id="post-<?php the_ID(); ?>" <?php post_class( 'd-flex flex-column row-gap-5 mb-5' ); ?>>
-	<?php
-	$sections = array(
-		'header'      => 'section',
-		'name-search' => 'aside',
-	);
-	foreach ( $sections as $template => $prefix ) {
-		get_template_part( "template-parts/donors/{$prefix}", $template );
-	}
-	?>
+	<?php get_template_part( 'template-parts/donors/content', 'donor-page-builder' ); ?>
 </main>
 <?php
 get_footer();
