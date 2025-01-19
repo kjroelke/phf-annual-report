@@ -1,9 +1,11 @@
 <?php
 /**
- * Template Name: Donors List — Multiple Lists
+ * Template Name: Donors List — Multiple Lists (No Headers)
  *
  * @package KJR_Dev
  */
+
+use KJR_Dev\CSV_Handler;
 
 wp_enqueue_style( 'kjr-donor-lookup' );
 wp_enqueue_script( 'kjr-donor-lookup' );
@@ -14,9 +16,16 @@ get_header();
 	$sections = array(
 		'header'      => 'section',
 		'name-search' => 'aside',
+		'donor-list'  => 'section',
 	);
 	foreach ( $sections as $template => $prefix ) {
-		get_template_part( "template-parts/donors/{$prefix}", $template );
+		$args = array();
+		if ( 'donor-list' === $template ) {
+			$file_handler        = new CSV_Handler( get_the_ID() );
+			$donor_names         = $file_handler->get_the_list();
+			$args['donor_names'] = $donor_names;
+		}
+		get_template_part( "template-parts/donors/{$prefix}", $template, $args );
 	}
 	?>
 </main>

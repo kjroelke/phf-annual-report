@@ -18,7 +18,6 @@ get_header();
 		'name-search' => 'aside',
 		'donor-list'  => 'section',
 	);
-
 	foreach ( $sections as $template => $prefix ) {
 		$args = array();
 		if ( 'donor-list' === $template ) {

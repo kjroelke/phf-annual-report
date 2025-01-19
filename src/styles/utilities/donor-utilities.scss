@@ -32,6 +32,17 @@ $theme-colors: (
 		}
 	}
 }
+:where(h1, h2, h3, h4, h5, h6) {
+	margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: inherit;
+}
 
 .btn {
 	display: block;
@@ -52,14 +63,4 @@ $theme-colors: (
 	border-style: solid;
 	border-radius: var(--kjr-border-radius);
 	overflow: hidden;
-}
-
-mark {
-	background-color: var(--wp--preset--color--accent);
-	color: white;
-	font-style: italic;
-	padding: 0.5rem;
-}
-#donor-list li {
-	text-wrap: pretty;
 }
