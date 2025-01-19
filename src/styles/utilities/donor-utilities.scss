@@ -32,11 +32,7 @@ $theme-colors: (
 		}
 	}
 }
-:root {
-	--kjr--transition-standard: var(--wp--custom--transition-timing)
-		var(--wp--custom--transition-easing);
-	--kjr-border-radius: 10px;
-}
+
 .btn {
 	display: block;
 	padding: 0.5rem 1rem;
@@ -56,4 +52,14 @@ $theme-colors: (
 	border-style: solid;
 	border-radius: var(--kjr-border-radius);
 	overflow: hidden;
+}
+
+mark {
+	background-color: var(--wp--preset--color--accent);
+	color: white;
+	font-style: italic;
+	padding: 0.5rem;
+}
+#donor-list li {
+	text-wrap: pretty;
 }

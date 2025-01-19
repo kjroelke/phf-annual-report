@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Donors - 1894 Society
+ * Template Name: Donors List — No Headers
  *
  * @package KJR_Dev
  */

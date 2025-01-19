@@ -5,9 +5,6 @@
  * @package KJR_Dev
  */
 
-// TODO: Add the names to be rendered with JS as JSON Object with localized script.
-// TODO: Add non-JS fallback that only shows potential matches based on $_GET['name'] parameter.
-
 $donor_names = $args['donor_names'];
 ?>
 <section class="container">

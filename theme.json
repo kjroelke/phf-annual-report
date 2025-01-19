@@ -12,12 +12,12 @@
 			"palette": [
 				{
 					"slug": "primary",
-					"color": "#542988",
+					"color": "#4F0B7B",
 					"name": "Primary"
 				},
 				{
 					"slug": "secondary",
-					"color": "#54595f",
+					"color": "#818A8F",
 					"name": "Secondary"
 				},
 				{
@@ -98,7 +98,7 @@
 		"custom": {
 			"lineHeight": "calc(4px + 2ex)",
 			"transitionTiming": ".15s",
-			"transitionEasing": "ease-in-out",
+			"transitionEasing": "cubic-bezier(0.22, 0.61, 0.36, 1)",
 			"transition": "var:custom|transitionTiming var:custom|transitionEasing",
 			"gutters": "1.25rem"
 		}

@@ -50,27 +50,44 @@ class Asset_Handler {
 	 * Enqueue the utility classes CSS stylesheet
 	 */
 	private function enqueue_utilities() {
-		$utilities = require_once get_stylesheet_directory() . '/build/utilities/bs-utilities.asset.php';
+		$bs_utilities = require_once get_stylesheet_directory() . '/build/utilities/bs-utilities.asset.php';
 		wp_enqueue_style(
 			'bs-utilities',
 			get_stylesheet_directory_uri() . '/build/utilities/bs-utilities.css',
-			$utilities['dependencies'],
-			$utilities['version']
+			$bs_utilities['dependencies'],
+			$bs_utilities['version']
 		);
-		$donor_utils = require_once get_stylesheet_directory() . '/build/modules/donor-lookup.asset.php';
+		$donor_utils_id = 'kjr-donor-lookup';
+		$donor_utils    = require_once get_stylesheet_directory() . '/build/modules/donor-lookup.asset.php';
 		wp_register_style(
-			'kjr-donor-lookup',
+			$donor_utils_id,
 			get_stylesheet_directory_uri() . '/build/modules/donor-lookup.css',
 			array( ...$donor_utils['dependencies'], 'bs-utilities', 'kjr-global' ),
 			$donor_utils['version']
 		);
 		wp_register_script(
-			'kjr-donor-lookup',
+			$donor_utils_id,
 			get_stylesheet_directory_uri() . '/build/modules/donor-lookup.js',
 			array( ...$donor_utils['dependencies'], 'kjr-global' ),
 			$donor_utils['version'],
 			array( 'strategy' => 'defer' )
 		);
+		$donor_page_templates = array(
+			'templates/donors-list-headers.php',
+			'templates/donors-list-multi-list.php',
+			'templates/donors-list-no-headers.php',
+		);
+		if ( is_page() && in_array( get_page_template_slug( get_the_ID() ), $donor_page_templates, true ) ) {
+			$file_handler = new CSV_Handler( get_the_ID() );
+			$list         = $file_handler->get_the_json_object();
+			wp_localize_script(
+				'kjr-donor-lookup',
+				'phfDonorList',
+				array(
+					'donorList' => is_wp_error( $list ) ? array() : $list,
+				)
+			);
+		}
 	}
 
 	/**
@@ -96,7 +113,7 @@ class Asset_Handler {
 			$this->main_asset_id,
 			'kjrSiteData',
 			array(
-				'root_url' => get_site_url(),
+				'rootUrl' => get_site_url(),
 			)
 		);
 	}

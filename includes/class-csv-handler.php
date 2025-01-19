@@ -50,6 +50,29 @@ class CSV_Handler {
 	}
 
 	/**
+	 * Returns the CSV as a JSON object
+	 *
+	 * @return array|WP_Error the data, or the WP_Error
+	 */
+	public function get_the_json_object(): array|WP_Error {
+		$list = $this->get_the_list();
+		if ( is_wp_error( $list ) ) {
+			return $list;
+		}
+		$data = array_map(
+			function ( $name ) {
+				$id = esc_html( sanitize_title( $name ) );
+				return array(
+					'name' => $name,
+					'id'   => $id,
+				);
+			},
+			$list
+		);
+		return $data;
+	}
+
+	/**
 	 * Reads the file from the set URL and returns its data
 	 *
 	 * @return string the response body, or a WP_Error
@@ -91,12 +114,12 @@ class CSV_Handler {
 
 		// Read each line into an array.
 		foreach ( $csv_lines as $line ) {
-			$data[] = str_getcsv( $line );
+			$data[] = trim( $line );
 		}
 
 		// Clean up the temporary file.
 		$wp_filesystem->delete( $temp_file );
 
-		return $csv_lines;
+		return $data;
 	}
 }
