@@ -104,14 +104,22 @@ class CSV_Handler {
 	 * @return array|WP_Error the data, or the WP_Error
 	 */
 	public function get_the_json_object(): array|WP_Error {
-		$list = $this->get_the_list();
+		$list     = $this->get_the_list();
+		$js_types = array(
+			'has_headers' => 'headers',
+			'no_headers'  => 'noHeaders',
+			'multi_list'  => 'multiList',
+		);
 		if ( is_wp_error( $list ) ) {
 			return $list;
 		}
 		if ( is_array( $list[0] ) ) {
-			$data = array();
-			foreach ( $list as $donor_list ) {
-				$data[ esc_html( sanitize_title( key( $donor_list ) ) ) ] = array_map(
+			if ( 'multi_list' === $this->file_type ) {
+				$data = $this->parse_multi_list_data( $list );
+			} elseif ( 'has_headers' === $this->file_type ) {
+				$data = $this->parse_list_with_headers_data( $list );
+			} else {
+				$data = array_map(
 					function ( $name ) {
 						$id = esc_html( sanitize_title( $name ) );
 						return array(
@@ -119,21 +127,57 @@ class CSV_Handler {
 							'id'   => $id,
 						);
 					},
-					$donor_list[ key( $donor_list ) ]
+					$list
 				);
 			}
-			return $data;
 		}
-		$data = array_map(
-			function ( $name ) {
-				$id = esc_html( sanitize_title( $name ) );
-				return array(
-					'name' => $name,
-					'id'   => $id,
-				);
-			},
-			$list
+		return array(
+			'type' => $js_types[ $this->file_type ],
+			'data' => $data,
 		);
+	}
+
+	/**
+	 * Parses the multi-list data
+	 *
+	 * @param array $donor_data the donor data.
+	 * @return array the data
+	 */
+	private function parse_multi_list_data( $donor_data ): array {
+		$data = array();
+		foreach ( $donor_data as $donor_list ) {
+			$data[ esc_html( sanitize_title( key( $donor_list ) ) ) ] = array_map(
+				function ( $name ) {
+					$id = esc_html( sanitize_title( $name ) );
+					return array(
+						'name' => $name,
+						'id'   => $id,
+					);
+				},
+				$donor_list[ key( $donor_list ) ]
+			);
+		}
+		return $data;
+	}
+
+	private function parse_list_with_headers_data( $donor_data ): array {
+		$donor_data_size = count( $donor_data );
+		$data            = array(
+			'headers' => $donor_data[0],
+			'list'    => array(),
+		);
+		for ( $i = 1; $i < $donor_data_size; $i++ ) {
+			$donor            = array(
+				'name' => esc_textarea( $donor_data[ $i ][0] ),
+				'id'   => esc_html( sanitize_title( $donor_data[ $i ][0] ) ),
+			);
+			$modifiers_length = count( $donor_data[ $i ] );
+			for ( $j = 1; $j < $modifiers_length; $j++ ) {
+				$mod                = trim( strtolower( esc_textarea( $donor_data[ $i ][ $j ] ) ) );
+				$donor['headers'][] = 'x' === $mod ? true : null;
+			}
+			array_push( $data['list'], $donor );
+		}
 		return $data;
 	}
 
@@ -175,15 +219,17 @@ class CSV_Handler {
 		// Create a temporary file and write the CSV content to it.
 		$temp_file = wp_tempnam();
 		$wp_filesystem->put_contents( $temp_file, $body );
+		if ( 'has_headers' === $this->file_type ) {
+			$data = array_map( 'str_getcsv', file( $temp_file ) );
+		} else {
+			// Open the temporary file for reading.
+			$csv_lines = $wp_filesystem->get_contents_array( $temp_file );
 
-		// Open the temporary file for reading.
-		$csv_lines = $wp_filesystem->get_contents_array( $temp_file );
-
-		// Read each line into an array.
-		foreach ( $csv_lines as $line ) {
-			$data[] = trim( $line );
+			// Read each line into an array.
+			foreach ( $csv_lines as $line ) {
+				$data[] = trim( $line );
+			}
 		}
-
 		// Clean up the temporary file.
 		$wp_filesystem->delete( $temp_file );
 

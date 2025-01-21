@@ -1,5 +1,23 @@
 import Fuse, { FuseResult } from 'fuse.js';
 export type Result = { name: string; id: string };
+type DonorList = {
+	name: string;
+	id: string;
+};
+
+type DonorListWithHeaders = {
+	name: string;
+	id: string;
+	headers: [ true | null ];
+};
+
+type DonorData =
+	| { type: 'noHeaders'; data: DonorList[] }
+	| {
+			type: 'headers';
+			data: { headers: string[]; list: DonorListWithHeaders[] };
+	  }
+	| { type: 'multiList'; data: { [ key: string ]: DonorList[] } };
 
 export default class Model {
 	/**
@@ -8,22 +26,24 @@ export default class Model {
 	namesMap: Map< string, string > | Map< string, Map< string, string > >;
 
 	init() {
-		const names = window.phfDonorList.donorList as
-			| Array< { name: string; id: string } >
-			| { [ key: string ]: Array< { name: string; id: string } > };
+		const names = window.phfDonorList.donorList as DonorData;
 		if ( ! names ) {
 			throw new Error( 'Donor List not found' );
 		}
-		if ( Array.isArray( names ) ) {
+		if ( 'noHeaders' === names.type ) {
 			this.namesMap = new Map(
-				names.map( ( { name, id } ) => [ name, id ] )
+				names.data.map( ( { name, id } ) => [ name, id ] )
 			);
-		} else {
+		} else if ( 'multiList' === names.type ) {
 			this.namesMap = new Map(
-				Object.entries( names ).map( ( [ key, value ] ) => [
+				Object.entries( names.data ).map( ( [ key, value ] ) => [
 					`donor-list-${ key }`,
 					new Map( value.map( ( { id, name } ) => [ name, id ] ) ),
 				] )
+			);
+		} else {
+			this.namesMap = new Map(
+				names.data.list.map( ( { name, id } ) => [ name, id ] )
 			);
 		}
 	}
