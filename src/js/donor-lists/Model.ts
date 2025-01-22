@@ -5,17 +5,17 @@ type DonorList = {
 	id: string;
 };
 
-type DonorListWithHeaders = {
+export type MultiColumnDonorList = {
 	name: string;
 	id: string;
-	headers: [ true | null ];
+	headers: [ true | null ][];
 };
 
 type DonorData =
 	| { type: 'noHeaders'; data: DonorList[] }
 	| {
-			type: 'headers';
-			data: { headers: string[]; list: DonorListWithHeaders[] };
+			type: 'multiColumn';
+			data: { headers: string[]; list: MultiColumnDonorList[] };
 	  }
 	| { type: 'multiList'; data: { [ key: string ]: DonorList[] } };
 
@@ -23,13 +23,18 @@ export default class Model {
 	/**
 	 * A lookup of names as name, id (slug) pairs.
 	 */
-	namesMap: Map< string, string > | Map< string, Map< string, string > >;
+	namesMap:
+		| Map< string, string >
+		| Map< string, Map< string, string > >
+		| Map< string, { id: string; headers: [ true | null ] } >;
+	dbType: 'noHeaders' | 'multiColumn' | 'multiList';
 
 	init() {
 		const names = window.phfDonorList.donorList as DonorData;
 		if ( ! names ) {
 			throw new Error( 'Donor List not found' );
 		}
+		this.dbType = names.type;
 		if ( 'noHeaders' === names.type ) {
 			this.namesMap = new Map(
 				names.data.map( ( { name, id } ) => [ name, id ] )
@@ -43,7 +48,10 @@ export default class Model {
 			);
 		} else {
 			this.namesMap = new Map(
-				names.data.list.map( ( { name, id } ) => [ name, id ] )
+				names.data.list.map( ( { name, id, headers } ) => [
+					name,
+					{ id, headers },
+				] )
 			);
 		}
 	}
@@ -55,17 +63,13 @@ export default class Model {
 	 */
 	findDonor( name: string ): FuseResult< Result >[] | null {
 		const db = this.setFuseDb();
-		const fuse = new Fuse(
-			Array.from( db, ( [ name, id ] ) => ( { name, id } ) ),
-			{
-				keys: [ 'name' ],
-				threshold: 0.3,
-				includeScore: true,
-				minMatchCharLength: 2,
-			}
-		);
+		const fuse = new Fuse( db, {
+			keys: [ 'name' ],
+			threshold: 0.3,
+			includeScore: true,
+			minMatchCharLength: 2,
+		} );
 		const results = fuse.search< Result >( name );
-		console.log( results );
 		if ( results.length > 0 ) {
 			return results;
 		} else {
@@ -74,17 +78,35 @@ export default class Model {
 	}
 
 	private setFuseDb() {
-		const values: ( string | Map< string, string > )[] = Array.from(
-			this.namesMap.values()
-		);
-		const isMultiList = values.every( ( value ) => value instanceof Map );
-		if ( ! isMultiList ) {
-			return this.namesMap as Map< string, string >;
+		if ( 'noHeaders' === this.dbType ) {
+			return Array.from(
+				this.namesMap as Map< string, string >,
+				( [ name, id ] ) => ( { name, id } )
+			);
 		}
 		let db = new Map();
-		values.forEach( ( map ) => {
-			db = new Map( [ ...db, ...map ] );
-		} );
-		return db;
+		if ( 'multiList' === this.dbType ) {
+			const values: ( string | Map< string, string > )[] = Array.from(
+				this.namesMap.values()
+			);
+			values.forEach( ( map ) => {
+				db = new Map( [ ...db, ...map ] );
+			} );
+			return Array.from( db, ( [ name, id ] ) => ( { name, id } ) );
+		} else {
+			for ( const [ key, value ] of this.namesMap.entries() ) {
+				let values = value as MultiColumnDonorList;
+				db.set( key, {
+					id: values.id,
+					headers: values.headers,
+					name: key,
+				} );
+			}
+			return Array.from( db.entries(), ( [ name, value ] ) => ( {
+				name,
+				value,
+				id: value.id,
+			} ) );
+		}
 	}
 }

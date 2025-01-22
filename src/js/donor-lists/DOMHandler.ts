@@ -1,5 +1,5 @@
 import { FuseResult } from 'fuse.js';
-import { Result } from './Model';
+import { Result, type MultiColumnDonorList } from './Model';
 
 export default class DOMHandler {
 	input: HTMLInputElement;
@@ -12,14 +12,18 @@ export default class DOMHandler {
 	private findDonor: ( name: string ) => FuseResult< Result >[] | null;
 	private namesMap:
 		| Map< string, string >
-		| Map< string, Map< string, string > >;
+		| Map< string, Map< string, string > >
+		| MultiColumnDonorList[];
+	private dbType: 'noHeaders' | 'multiColumn' | 'multiList';
 
 	constructor(
 		findDonor: ( name: string ) => FuseResult< Result >[] | null,
-		namesMap: Map< string, string > | Map< string, Map< string, string > >
+		namesMap: Map< string, string > | Map< string, Map< string, string > >,
+		dbType: 'noHeaders' | 'multiColumn' | 'multiList'
 	) {
 		this.findDonor = findDonor;
 		this.namesMap = namesMap;
+		this.dbType = dbType;
 	}
 	init() {
 		this.generateForm();
@@ -170,7 +174,7 @@ export default class DOMHandler {
 		const values: ( string | Map< string, string > )[] = Array.from(
 			this.namesMap.values()
 		);
-		const isMultiList = values.every( ( value ) => value instanceof Map );
+		const isMultiList = 'multiList' === this.dbType;
 		if ( ! isMultiList ) {
 			this.resetResults();
 		} else {
@@ -181,12 +185,41 @@ export default class DOMHandler {
 	}
 
 	private resetResults( id?: string, map?: Map< string, string > ) {
+		if ( 'multiColumn' === this.dbType ) {
+			this.resetMultiColumnResults();
+			return;
+		}
 		const selector = id ?? 'donor-list';
 		const results = document.getElementById( selector ) as HTMLUListElement;
 		let resetList = '';
 		const namesMap = map ?? this.namesMap;
 		for ( const [ name, id ] of namesMap.entries() ) {
 			resetList += `<li id="${ id }">${ name }</li>`;
+		}
+		results.innerHTML = resetList;
+	}
+
+	private resetMultiColumnResults() {
+		const results = document.getElementById(
+			'donor-list'
+		) as HTMLUListElement;
+		let resetList = '';
+		for ( const x of this.namesMap.entries() ) {
+			const [ name, args ] = x;
+			const { id, headers } = args as {
+				id: MultiColumnDonorList[ 'id' ];
+				headers: MultiColumnDonorList[ 'headers' ];
+			};
+			resetList += `<li id="${ id }">${ name }`;
+			if ( headers.some( ( item ) => item !== null ) ) {
+				if ( headers[ 0 ] ) {
+					resetList += `<span class="name-details mx-1" title="Employee">+<span class="visually-hidden">Employee</span></span>`;
+				}
+				if ( headers[ 1 ] ) {
+					resetList += `<span class="name-details mx-1" title="Deceased">◊<span class="visually-hidden">Deceased</span></span>`;
+				}
+			}
+			resetList += `</li>`;
 		}
 		results.innerHTML = resetList;
 	}

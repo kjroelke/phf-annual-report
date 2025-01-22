@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Donors List — Headers
+ * Template Name: Donors List — Multi-Column
  *
  * @package KJR_Dev
  */

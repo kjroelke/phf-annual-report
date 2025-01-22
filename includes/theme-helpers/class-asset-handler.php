@@ -73,7 +73,7 @@ class Asset_Handler {
 			array( 'strategy' => 'defer' )
 		);
 		$donor_page_templates = array(
-			'templates/donors-list-headers.php',
+			'templates/donors-list-multi-column.php',
 			'templates/donors-list-multi-list.php',
 			'templates/donors-list-no-headers.php',
 		);

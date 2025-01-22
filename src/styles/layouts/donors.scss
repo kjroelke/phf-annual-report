@@ -5,6 +5,11 @@ mark {
 	color: white;
 	font-style: italic;
 	padding: 0.5rem;
+
+	.bg-primary.text-white & {
+		background-color: white;
+		color: var(--wp--preset--color--primary);
+	}
 }
 
 main header {
@@ -26,9 +31,5 @@ ul[id^="donor-list"] {
 	:where(&) {
 		list-style-type: none;
 		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	}
-	:where(&:even) {
-		background-color: var(--wp--preset--color--primary);
-		color: white;
 	}
 }

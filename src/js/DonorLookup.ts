@@ -12,7 +12,8 @@ new ( class DonorLookup {
 			this.db.init();
 			this.view = new DOMHandler(
 				this.db.findDonor.bind( this.db ),
-				this.db.namesMap
+				this.db.namesMap,
+				this.db.dbType
 			);
 			this.view.init();
 		} catch ( error ) {

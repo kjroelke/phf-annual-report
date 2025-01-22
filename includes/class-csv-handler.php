@@ -23,7 +23,7 @@ class CSV_Handler {
 	/**
 	 * Whether the file has headers or not, or if the file is a multi-list
 	 *
-	 * @var 'has_headers'|'no_headers'|'multi_list' $file_type
+	 * @var 'multi_column'|'no_headers'|'multi_list' $file_type
 	 */
 	private string $file_type;
 
@@ -42,9 +42,9 @@ class CSV_Handler {
 	 */
 	private function set_file_type() {
 		$file_types      = array(
-			'has_headers' => 'templates/donors-list-headers.php',
-			'no_headers'  => 'templates/donors-list-no-headers.php',
-			'multi_list'  => 'templates/donors-list-multi-list.php',
+			'multi_column' => 'templates/donors-list-multi-column.php',
+			'no_headers'   => 'templates/donors-list-no-headers.php',
+			'multi_list'   => 'templates/donors-list-multi-list.php',
 		);
 		$template        = get_page_template_slug( get_the_ID() );
 		$this->file_type = array_search( $template, $file_types, true );
@@ -57,9 +57,9 @@ class CSV_Handler {
 	 */
 	private function set_file_url( int $id ) {
 		$acf_fields = array(
-			'has_headers' => 'donor_list_headers',
-			'no_headers'  => 'donor_list_no_headers',
-			'multi_list'  => 'donor_list_no_headers',
+			'multi_column' => 'donor_list_headers',
+			'no_headers'   => 'donor_list_no_headers',
+			'multi_list'   => 'donor_list_no_headers',
 		);
 		if ( 'multi_list' === $this->file_type ) {
 			if ( have_rows( 'lists', $id ) ) {
@@ -106,9 +106,9 @@ class CSV_Handler {
 	public function get_the_json_object(): array|WP_Error {
 		$list     = $this->get_the_list();
 		$js_types = array(
-			'has_headers' => 'headers',
-			'no_headers'  => 'noHeaders',
-			'multi_list'  => 'multiList',
+			'multi_column' => 'multiColumn',
+			'no_headers'   => 'noHeaders',
+			'multi_list'   => 'multiList',
 		);
 		if ( is_wp_error( $list ) ) {
 			return $list;
@@ -116,20 +116,20 @@ class CSV_Handler {
 		if ( is_array( $list[0] ) ) {
 			if ( 'multi_list' === $this->file_type ) {
 				$data = $this->parse_multi_list_data( $list );
-			} elseif ( 'has_headers' === $this->file_type ) {
-				$data = $this->parse_list_with_headers_data( $list );
-			} else {
-				$data = array_map(
-					function ( $name ) {
-						$id = esc_html( sanitize_title( $name ) );
-						return array(
-							'name' => $name,
-							'id'   => $id,
-						);
-					},
-					$list
-				);
+			} elseif ( 'multi_column' === $this->file_type ) {
+				$data = $this->parse_multi_column_list( $list );
 			}
+		} else {
+			$data = array_map(
+				function ( $name ) {
+					$id = esc_html( sanitize_title( $name ) );
+					return array(
+						'name' => $name,
+						'id'   => $id,
+					);
+				},
+				$list
+			);
 		}
 		return array(
 			'type' => $js_types[ $this->file_type ],
@@ -160,7 +160,13 @@ class CSV_Handler {
 		return $data;
 	}
 
-	private function parse_list_with_headers_data( $donor_data ): array {
+	/**
+	 * Parses the multi-column list
+	 *
+	 * @param array $donor_data the donor data.
+	 * @return array the data
+	 */
+	private function parse_multi_column_list( $donor_data ): array {
 		$donor_data_size = count( $donor_data );
 		$data            = array(
 			'headers' => $donor_data[0],
@@ -219,7 +225,7 @@ class CSV_Handler {
 		// Create a temporary file and write the CSV content to it.
 		$temp_file = wp_tempnam();
 		$wp_filesystem->put_contents( $temp_file, $body );
-		if ( 'has_headers' === $this->file_type ) {
+		if ( 'multi_column' === $this->file_type ) {
 			$data = array_map( 'str_getcsv', file( $temp_file ) );
 		} else {
 			// Open the temporary file for reading.
