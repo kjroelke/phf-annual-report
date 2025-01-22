@@ -6,6 +6,7 @@ module.exports = {
 		entry: {
 			global: `./src/index.ts`,
 			'utilities/bs-utilities': `./src/styles/utilities/bootstrap-utilities.scss`,
+			'modules/donor-lookup': `./src/js/DonorLookup.ts`,
 		},
 		plugins: [
 			...defaultConfig.plugins,

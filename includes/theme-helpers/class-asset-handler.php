@@ -33,7 +33,7 @@ class Asset_Handler {
 	 */
 	public function __construct( bool $with_utilities = false ) {
 		$this->include_utilities = $with_utilities;
-		$this->main_asset_id     = 'k1-global';
+		$this->main_asset_id     = 'kjr-global';
 	}
 
 	/**
@@ -50,39 +50,70 @@ class Asset_Handler {
 	 * Enqueue the utility classes CSS stylesheet
 	 */
 	private function enqueue_utilities() {
-		$utilities = require_once get_stylesheet_directory() . '/build/utilities/bs-utilities.asset.php';
+		$bs_utilities = require_once get_stylesheet_directory() . '/build/utilities/bs-utilities.asset.php';
 		wp_enqueue_style(
 			'bs-utilities',
 			get_stylesheet_directory_uri() . '/build/utilities/bs-utilities.css',
-			$utilities['dependencies'],
-			$utilities['version']
+			$bs_utilities['dependencies'],
+			$bs_utilities['version']
 		);
+		$donor_utils_id = 'kjr-donor-lookup';
+		$donor_utils    = require_once get_stylesheet_directory() . '/build/modules/donor-lookup.asset.php';
+		wp_register_style(
+			$donor_utils_id,
+			get_stylesheet_directory_uri() . '/build/modules/donor-lookup.css',
+			array( ...$donor_utils['dependencies'], 'bs-utilities', 'kjr-global' ),
+			$donor_utils['version']
+		);
+		wp_register_script(
+			$donor_utils_id,
+			get_stylesheet_directory_uri() . '/build/modules/donor-lookup.js',
+			array( ...$donor_utils['dependencies'], 'kjr-global' ),
+			$donor_utils['version'],
+			array( 'strategy' => 'defer' )
+		);
+		$donor_page_templates = array(
+			'templates/donors-list-multi-column.php',
+			'templates/donors-list-multi-list.php',
+			'templates/donors-list-no-headers.php',
+		);
+		if ( is_page() && in_array( get_page_template_slug( get_the_ID() ), $donor_page_templates, true ) ) {
+			$file_handler = new CSV_Handler( get_the_ID() );
+			$list         = $file_handler->get_the_json_object();
+			wp_localize_script(
+				'kjr-donor-lookup',
+				'phfDonorList',
+				array(
+					'donorList' => is_wp_error( $list ) ? array() : $list,
+				)
+			);
+		}
 	}
 
 	/**
 	 * Enqueue the theme's styles and scripts
 	 */
 	private function enqueue_styles() {
-		$k1_global = require_once get_stylesheet_directory() . '/build/global.asset.php';
+		$kjr_global = require_once get_stylesheet_directory() . '/build/global.asset.php';
 
 		wp_enqueue_style(
 			$this->main_asset_id,
 			get_stylesheet_directory_uri() . '/build/global.css',
-			$this->get_dependencies( $k1_global, false, true ),
-			$k1_global['version']
+			$this->get_dependencies( $kjr_global, false, true ),
+			$kjr_global['version']
 		);
 		wp_enqueue_script(
 			$this->main_asset_id,
 			get_stylesheet_directory_uri() . '/build/global.js',
-			$this->get_dependencies( $k1_global, true, true ),
-			$k1_global['version'],
+			$this->get_dependencies( $kjr_global, true, true ),
+			$kjr_global['version'],
 			array( 'strategy' => 'defer' )
 		);
 		wp_localize_script(
 			$this->main_asset_id,
-			'k1SiteData',
+			'kjrSiteData',
 			array(
-				'root_url' => get_site_url(),
+				'rootUrl' => get_site_url(),
 			)
 		);
 	}

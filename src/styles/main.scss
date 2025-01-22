@@ -1,3 +1,26 @@
 @use "./reset";
 @use "./typography";
 @use "./layout";
+
+a.x-scroll-top {
+	background-color: var(--wp--preset--color--primary);
+	border-color: white;
+	color: white;
+	transition:
+		margin-bottom var(--kjr--transition-standard),
+		border-color var(--kjr--transition-standard),
+		opacity var(--kjr--transition-standard),
+		color var(--kjr--transition-standard);
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: white;
+		border-color: var(--wp--preset--color--primary);
+		color: var(--wp--preset--color--primary);
+	}
+
+	&.in {
+		opacity: 1;
+	}
+}

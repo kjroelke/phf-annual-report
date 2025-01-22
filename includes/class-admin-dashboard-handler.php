@@ -76,7 +76,7 @@ class Admin_Dashboard_Handler {
 		if ( empty( $first_name ) ) {
 			$first_name = 'there';
 		}
-		$k1_email   = 'kj.roelke@gmail.com';
+		$k1_email = 'kj.roelke@gmail.com';
 		echo "Hey {$first_name}! Welcome to the your site. If you have any troubles, questions, or dream features, be sure to reach out at <a href='mailto:{$k1_email}'>{$k1_email}</a>"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }

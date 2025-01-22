@@ -2,7 +2,12 @@
 * Reset
 * Used to undo Pro Theme's Styles, if necessary
 */
-@use "../../node_modules/normalize.css/normalize.css";
+
+:root {
+	--kjr--transition-standard: var(--wp--custom--transition-timing)
+		var(--wp--custom--transition-easing);
+	--kjr-border-radius: 10px;
+}
 
 html {
 	line-height: var(--wp--custom--line-height);

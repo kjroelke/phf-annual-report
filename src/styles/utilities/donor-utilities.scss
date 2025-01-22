@@ -1,0 +1,87 @@
+$theme-colors: (
+	"primary": var(--wp--preset--color--primary),
+	"secondary": var(--wp--preset--color--secondary),
+	"accent": var(--wp--preset--color--accent),
+	"body": var(--wp--preset--color--body),
+	"white": white,
+	"black": black,
+);
+@each $color, $value in $theme-colors {
+	.text-#{$color} {
+		color: $value;
+	}
+	.text-hover--#{$color} {
+		color: $value;
+	}
+	.bg-#{$color} {
+		background-color: $value;
+	}
+	.border-#{$color} {
+		border-color: $value;
+	}
+	.btn-#{$color} {
+		background-color: $value;
+		border-color: $value;
+
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: transparent;
+			border-color: $value;
+			color: $value;
+		}
+	}
+}
+:where(h1, h2, h3, h4, h5, h6) {
+	margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: inherit;
+}
+
+.btn {
+	display: block;
+	padding: 0.5rem 1rem;
+	border-radius: var(--kjr-border-radius);
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	border-width: 2px;
+	border-style: solid;
+	transition:
+		background-color var(--kjr--transition-standard),
+		color var(--kjr--transition-standard),
+		border-color var(--kjr--transition-standard);
+}
+.border {
+	border-width: 2px;
+	border-style: solid;
+	border-radius: var(--kjr-border-radius);
+	overflow: hidden;
+}
+
+p,
+li {
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.visually-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
+.name-details {
+	cursor: help;
+}
