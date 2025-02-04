@@ -1,0 +1,55 @@
+[
+    {
+        "key": "group_6779445e6b812",
+        "title": "Page Template — Donor List (No Headers)",
+        "fields": [
+            {
+                "key": "field_6779445e5e53b",
+                "label": "Donor List",
+                "name": "donor_list_no_headers",
+                "aria-label": "",
+                "type": "file",
+                "instructions": "CSV files must have no extra columns!",
+                "required": 1,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_677944985e53c",
+                            "operator": "!=",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "url",
+                "library": "all",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": "csv",
+                "allow_in_bindings": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "templates\/donors-list-no-headers.php"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 1
+    }
+]
