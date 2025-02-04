@@ -4,6 +4,10 @@ A custom WordPress theme, built on top of [Pro Theme by Themeco](https://theme.c
 
 # Changelog
 
+## 1.2.0
+
+-   Added: Donor template pages now have Featured Image support
+
 ## 1.1.1
 
 -   Added: Storing ACF Fields' json files in repo
