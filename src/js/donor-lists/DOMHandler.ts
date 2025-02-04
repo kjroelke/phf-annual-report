@@ -50,7 +50,7 @@ export default class DOMHandler {
 		const actionUrl = formContainer.getAttribute( 'data-post-slug' );
 		formContainer.innerHTML = '';
 		formContainer.innerHTML = `<form action="${ window.kjrSiteData.rootUrl }/donors/${ actionUrl }" class="w-100 d-flex flex-wrap gap-3 mb-0" method="get" id="donor-lookup-form">
-			<input type="text" name="name" id="name-lookup" class="border border-2 border-primary flex-grow-1" placeholder="Enter a name"/>
+			<input type="search" name="name" id="name-lookup" class="border border-2 border-primary flex-grow-1" placeholder="Enter a name"/>
 			<button type="submit" class="btn btn-primary text-white text-hover--primary">Search</button>
 		</form>
 		<div id="results-details"></div>`;

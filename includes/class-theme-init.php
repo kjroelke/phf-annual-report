@@ -39,6 +39,7 @@ class Theme_Init {
 		add_action( 'init', array( $this->block_handler, 'register_patterns_category' ) );
 		add_action( 'init', array( $this, 'alter_post_types' ) );
 		add_action( 'after_setup_theme', array( $this, 'theme_setup' ) );
+		add_filter( 'category_link', array( $this, 'remove_category_prefix' ), 10, 1 );
 	}
 
 	/**
@@ -107,7 +108,7 @@ class Theme_Init {
 	 */
 	private function remove_editor_support() {
 		if ( is_admin() ) {
-			$post_id = isset( $_GET['post'] ) ? $_GET['post'] : null;
+			$post_id = isset( $_GET['post'] ) ? $_GET['post'] : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			if ( $post_id ) {
 				$post = get_post( $post_id );
 				if ( $post && $post->post_parent ) {
@@ -122,7 +123,7 @@ class Theme_Init {
 
 	/** Remove comments, pings and trackbacks support from posts types. */
 	private function disable_discussion() {
-		// Close comments on the front-end
+		// Close comments on the front-end.
 		add_filter( 'comments_open', '__return_false', 20, 2 );
 		add_filter( 'pings_open', '__return_false', 20, 2 );
 
@@ -146,5 +147,21 @@ class Theme_Init {
 				}
 			}
 		);
+	}
+
+	/**
+	 * Remove the '/category/' prefix from category archive permalinks.
+	 *
+	 * @param string $category_link The category archive permalink.
+	 * @return string The modified category archive permalink.
+	 */
+	public function remove_category_prefix( $category_link ) {
+		$category_base = get_option( 'category_base' );
+		if ( $category_base ) {
+			$category_link = str_replace( '/' . $category_base . '/', '/', $category_link );
+		} else {
+			$category_link = str_replace( '/category/', '/', $category_link );
+		}
+		return $category_link;
 	}
 }

@@ -28,8 +28,21 @@ section.container h2 {
 }
 
 ul[id^="donor-list"] {
+	--kjr-num-columns: 1;
 	:where(&) {
 		list-style-type: none;
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		grid-template-columns: repeat(var(--kjr-num-columns), 1fr);
+	}
+
+	@media screen and (min-width: 620px) {
+		& {
+			--kjr-num-columns: 2;
+		}
+	}
+
+	@media screen and (min-width: 991px) {
+		& {
+			--kjr-num-columns: 3;
+		}
 	}
 }

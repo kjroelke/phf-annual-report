@@ -208,7 +208,7 @@ class CSV_Handler {
 	/**
 	 * Transforms the file from a CSV to an array
 	 *
-	 * @param string $body the response body
+	 * @param string $body the response body.
 	 * @return array the data
 	 */
 	private function parse_the_file( string $body ): array {

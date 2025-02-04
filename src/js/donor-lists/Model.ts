@@ -66,8 +66,8 @@ export default class Model {
 		const fuse = new Fuse( db, {
 			keys: [ 'name' ],
 			threshold: 0.3,
-			includeScore: true,
 			minMatchCharLength: 2,
+			ignoreLocation: true,
 		} );
 		const results = fuse.search< Result >( name );
 		if ( results.length > 0 ) {
