@@ -108,7 +108,7 @@ class Theme_Init {
 	 */
 	private function remove_editor_support() {
 		if ( is_admin() ) {
-			$post_id = isset( $_GET['post'] ) ? $_GET['post'] : null;
+			$post_id = isset( $_GET['post'] ) ? $_GET['post'] : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			if ( $post_id ) {
 				$post = get_post( $post_id );
 				if ( $post && $post->post_parent ) {
