@@ -11,6 +11,7 @@ A custom WordPress theme, built on top of [Pro Theme by Themeco](https://theme.c
 -   Fixed: Removed `/category/` prefix from category archive pages
 -   Fixed: Donor List now flows into 3 columns instead 4
 -   Fixed: fuzzy searching now ignores location for (partial) matches
+-   Chore: Updated packages and passed code checks
 
 ## 1.1.0
 
