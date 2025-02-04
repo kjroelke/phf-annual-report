@@ -109,17 +109,24 @@ class Theme_Init {
 	private function remove_editor_support() {
 		if ( is_admin() ) {
 			$post_id = isset( $_GET['post'] ) ? $_GET['post'] : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			if ( $post_id ) {
-				$post = get_post( $post_id );
-				if ( $post && $post->post_parent ) {
-					$parent = get_post( $post->post_parent );
-					if ( $parent && 'donors' === $parent->post_name ) {
-						remove_post_type_support( 'page', 'editor' );
-					}
-				}
+			if ( ! $post_id ) {
+				return;
+			}
+			$template_name = get_page_template_slug( $post_id );
+			if ( ! $template_name ) {
+				return;
+			}
+			$templates_to_alter = array(
+				'templates/donors-list-multi-column.php',
+				'templates/donors-list-multi-list.php',
+				'templates/donors-list-no-headers.php',
+			);
+			if ( in_array( $template_name, $templates_to_alter, true ) ) {
+				remove_post_type_support( 'page', 'editor' );
 			}
 		}
 	}
+
 
 	/** Remove comments, pings and trackbacks support from posts types. */
 	private function disable_discussion() {
