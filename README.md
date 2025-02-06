@@ -4,6 +4,11 @@ A custom WordPress theme, built on top of [Pro Theme by Themeco](https://theme.c
 
 # Changelog
 
+## 1.2.1
+
+- Added: Donor names now search and replace all double quotes
+- Added: ACF JSON files migrated and latest changes are added
+
 ## 1.2.0
 
 -   Added: Donor template pages now have Featured Image support
