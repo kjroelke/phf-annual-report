@@ -233,7 +233,7 @@ class CSV_Handler {
 
 			// Read each line into an array.
 			foreach ( $csv_lines as $line ) {
-				$data[] = trim( $line );
+				$data[] = str_replace( '"', '', trim( $line ) );
 			}
 		}
 		// Clean up the temporary file.

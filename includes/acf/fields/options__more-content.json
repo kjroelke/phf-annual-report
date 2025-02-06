@@ -1,0 +1,226 @@
+[
+    {
+        "key": "group_67a444300314c",
+        "title": "Options — More Content",
+        "fields": [
+            {
+                "key": "field_67a4452b03ebd",
+                "label": "Presidents Letter",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_67a4442fefb3d",
+                "label": "Presidents Letter",
+                "name": "presidents_letter",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_67a4456003ebf",
+                "label": "Letter Authors",
+                "name": "letter_authors",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "row",
+                "pagination": 0,
+                "min": 0,
+                "max": 0,
+                "collapsed": "field_67a4459903ec1",
+                "button_label": "Add Author",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_67a4456f03ec0",
+                        "label": "Headshot",
+                        "name": "headshot",
+                        "aria-label": "",
+                        "type": "image",
+                        "instructions": "Should be square, and between 500px and 1000px",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "return_format": "id",
+                        "library": "all",
+                        "min_width": 500,
+                        "min_height": 500,
+                        "min_size": "",
+                        "max_width": 1000,
+                        "max_height": 1000,
+                        "max_size": "",
+                        "mime_types": "jpg,png,webp",
+                        "allow_in_bindings": 0,
+                        "preview_size": "medium",
+                        "parent_repeater": "field_67a4456003ebf"
+                    },
+                    {
+                        "key": "field_67a4464c5de07",
+                        "label": "Signature",
+                        "name": "signature",
+                        "aria-label": "",
+                        "type": "image",
+                        "instructions": "Should be between 500px and 1000px wide and have a transparent background",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "return_format": "id",
+                        "library": "all",
+                        "min_width": 500,
+                        "min_height": "",
+                        "min_size": "",
+                        "max_width": 1000,
+                        "max_height": "",
+                        "max_size": "",
+                        "mime_types": "png,webp",
+                        "allow_in_bindings": 0,
+                        "preview_size": "medium",
+                        "parent_repeater": "field_67a4456003ebf"
+                    },
+                    {
+                        "key": "field_67a4459903ec1",
+                        "label": "Name",
+                        "name": "name",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_67a4456003ebf"
+                    },
+                    {
+                        "key": "field_67a445a803ec2",
+                        "label": "Title",
+                        "name": "title",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_67a4456003ebf"
+                    }
+                ]
+            },
+            {
+                "key": "field_67a4455103ebe",
+                "label": "Board Members List",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_67a44474b4d83",
+                "label": "Board Members List",
+                "name": "board_members_list",
+                "aria-label": "",
+                "type": "file",
+                "instructions": "Expects a sorted CSV list of names. CSV should be a single column and not have headers as its first row.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "url",
+                "library": "all",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": "csv",
+                "allow_in_bindings": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "extra-content-settings"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Powers some extra content sections throughout the site.",
+        "show_in_rest": 0
+    }
+]
