@@ -4,10 +4,16 @@ A custom WordPress theme, built on top of [Pro Theme by Themeco](https://theme.c
 
 # Changelog
 
+## 1.3.0
+
+-   Added: Chevron Society Donor archive template now supports a headline + subheadline
+-   Added: Donor Form now has a heading and some extra padding on large screens and up
+-   Fixed: Increased height of Donor Archive Pages
+
 ## 1.2.1
 
-- Added: Donor names now search and replace all double quotes
-- Added: ACF JSON files migrated and latest changes are added
+-   Added: Donor names now search and replace all double quotes
+-   Added: ACF JSON files migrated and latest changes are added
 
 ## 1.2.0
 
