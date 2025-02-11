@@ -13,12 +13,8 @@ mark {
 }
 
 main header {
-	min-height: clamp(300px, 40vh, 600px);
+	min-height: clamp(300px, 60vh, 600px);
 	align-content: center;
-}
-
-section.container h2 {
-	color: var(--wp--preset--color--primary);
 }
 
 #form-container input[type="text"] {

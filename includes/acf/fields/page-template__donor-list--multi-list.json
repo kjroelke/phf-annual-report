@@ -1,102 +1,124 @@
 [
-    {
-        "key": "group_678c753836a30",
-        "title": "Page Template — Donor List (Multi List, No Headers)",
-        "fields": [
-            {
-                "key": "field_678c75a6dd9c6",
-                "label": "Lists",
-                "name": "lists",
-                "aria-label": "",
-                "type": "repeater",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "layout": "table",
-                "pagination": 0,
-                "min": 0,
-                "max": 0,
-                "collapsed": "",
-                "button_label": "Add Row",
-                "rows_per_page": 20,
-                "sub_fields": [
-                    {
-                        "key": "field_678c75b8dd9c7",
-                        "label": "List Label",
-                        "name": "list_label",
-                        "aria-label": "",
-                        "type": "text",
-                        "instructions": "Appears as section header",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "maxlength": "",
-                        "allow_in_bindings": 0,
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": "",
-                        "parent_repeater": "field_678c75a6dd9c6"
-                    },
-                    {
-                        "key": "field_678c75383dc65",
-                        "label": "Donor List",
-                        "name": "donor_list_no_headers",
-                        "aria-label": "",
-                        "type": "file",
-                        "instructions": "CSV files must have no extra columns!",
-                        "required": 1,
-                        "conditional_logic": [
-                            [
-                                {
-                                    "field": "field_677944985e53c",
-                                    "operator": "!=",
-                                    "value": "1"
-                                }
-                            ]
-                        ],
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "return_format": "url",
-                        "library": "all",
-                        "min_size": "",
-                        "max_size": "",
-                        "mime_types": "csv",
-                        "allow_in_bindings": 0,
-                        "parent_repeater": "field_678c75a6dd9c6"
-                    }
-                ]
-            }
-        ],
-        "location": [
-            [
-                {
-                    "param": "page_template",
-                    "operator": "==",
-                    "value": "templates\/donors-list-multi-list.php"
-                }
-            ]
-        ],
-        "menu_order": 0,
-        "position": "acf_after_title",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": true,
-        "description": "",
-        "show_in_rest": 1
-    }
+	{
+		"key": "group_678c753836a30",
+		"title": "Page Template — Donor List (Multi List, No Headers)",
+		"fields": [
+			{
+				"key": "field_678c75a6dd9c6",
+				"label": "Lists",
+				"name": "lists",
+				"aria-label": "",
+				"type": "repeater",
+				"instructions": "",
+				"required": 0,
+				"conditional_logic": 0,
+				"wrapper": {
+					"width": "",
+					"class": "",
+					"id": ""
+				},
+				"layout": "table",
+				"pagination": 0,
+				"min": 0,
+				"max": 0,
+				"collapsed": "",
+				"button_label": "Add Row",
+				"rows_per_page": 20,
+				"sub_fields": [
+					{
+						"key": "field_678c75b8dd9c7",
+						"label": "List Label",
+						"name": "list_label",
+						"aria-label": "",
+						"type": "text",
+						"instructions": "Appears as section header",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"default_value": "",
+						"maxlength": "",
+						"allow_in_bindings": 0,
+						"placeholder": "",
+						"prepend": "",
+						"append": "",
+						"parent_repeater": "field_678c75a6dd9c6"
+					},
+					{
+						"key": "field_67aab026e2d2e",
+						"label": "List Description",
+						"name": "list_description",
+						"aria-label": "",
+						"type": "textarea",
+						"instructions": "New lines ignored",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"default_value": "",
+						"maxlength": "",
+						"allow_in_bindings": 0,
+						"rows": "",
+						"placeholder": "",
+						"new_lines": "",
+						"parent_repeater": "field_678c75a6dd9c6"
+					},
+					{
+						"key": "field_678c75383dc65",
+						"label": "Donor List",
+						"name": "donor_list_no_headers",
+						"aria-label": "",
+						"type": "file",
+						"instructions": "CSV files must have no extra columns!",
+						"required": 1,
+						"conditional_logic": [
+							[
+								{
+									"field": "field_677944985e53c",
+									"operator": "!=",
+									"value": "1"
+								}
+							]
+						],
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"return_format": "url",
+						"library": "all",
+						"min_size": "",
+						"max_size": "",
+						"mime_types": "csv",
+						"allow_in_bindings": 0,
+						"parent_repeater": "field_678c75a6dd9c6"
+					}
+				]
+			}
+		],
+		"location": [
+			[
+				{
+					"param": "page_template",
+					"operator": "==",
+					"value": "templates/donors-list-multi-list.php"
+				}
+			]
+		],
+		"menu_order": 0,
+		"position": "acf_after_title",
+		"style": "default",
+		"label_placement": "top",
+		"instruction_placement": "label",
+		"hide_on_screen": "",
+		"active": true,
+		"description": "",
+		"show_in_rest": 1
+	}
 ]
