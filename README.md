@@ -4,6 +4,11 @@ A custom WordPress theme, built on top of [Pro Theme by Themeco](https://theme.c
 
 # Changelog
 
+## 1.4.0
+
+-   Added: Donor pages now support a brief description below the title
+-   Updated text on Full Donor List
+
 ## 1.3.0
 
 -   Added: Chevron Society Donor archive template now supports a headline + subheadline

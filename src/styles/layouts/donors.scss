@@ -17,6 +17,12 @@ main header {
 	align-content: center;
 }
 
+.donor-list-subtitle p {
+	font-size: var(--wp--preset--font-size--medium);
+	margin: 0;
+	text-wrap: pretty;
+}
+
 #form-container input[type="text"] {
 	&::placeholder {
 		color: var(--wp--preset--color--body);

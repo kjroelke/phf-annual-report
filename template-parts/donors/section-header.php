@@ -28,7 +28,14 @@ $header_classes = ( implode( ' ', $header_classes ) );
 		echo '<div class="overlay bg-primary opacity-50 z-1 position-absolute inset-0"></div>';
 	}
 	?>
-	<div class="container position-relative z-2">
-		<?php the_title( '<h1 class="text-white">', '</h1>' ); ?>
+	<div class="container position-relative z-2 text-white">
+		<div class="row justify-content-center">
+			<div class="col col-sm-10">
+				<?php the_title( '<h1>', '</h1>' ); ?>
+				<?php if ( get_field( 'short_description' ) ) : ?>
+				<div class="donor-list-subtitle mt-2"><?php the_field( 'short_description' ); ?></div>
+				<?php endif; ?>
+			</div>
+		</div>
 	</div>
 </header>
