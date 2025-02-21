@@ -14,8 +14,6 @@
 		</div>
 	</div>
 	<?php if ( get_page_template_slug( get_the_ID() ) === 'templates/donors-list-multi-column.php' ) : ?>
-	<div class="mt-3 px-2 fst-italic">
-		<p>Names marked “+” if they are employees. Names marked “◊” if they have passed.</p>
-	</div>
+	<p class="mt-3 px-2 fst-italic mb-0">Names marked “+” are members of our Employee Giving Society. Names marked “◊” have passed. We honor these donors for their contributions.</p>
 	<?php endif; ?>
 </aside>

@@ -40,6 +40,12 @@ class Theme_Init {
 		add_action( 'init', array( $this, 'alter_post_types' ) );
 		add_action( 'after_setup_theme', array( $this, 'theme_setup' ) );
 		add_filter( 'category_link', array( $this, 'remove_category_prefix' ), 10, 1 );
+		add_filter(
+			'wpseo_metabox_prio',
+			function (): string {
+				return 'low';
+			}
+		);
 	}
 
 	/**
