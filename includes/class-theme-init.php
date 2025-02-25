@@ -61,6 +61,7 @@ class Theme_Init {
 			'login-handler'           => 'Login_Handler',
 			'admin-dashboard-handler' => 'Admin_Dashboard_Handler',
 			'csv-handler'             => null,
+			'donor-search-helper'     => null,
 		);
 
 		foreach ( $files as $file => $class ) {

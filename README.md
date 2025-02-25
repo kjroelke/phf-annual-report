@@ -4,6 +4,10 @@ A custom WordPress theme, built on top of [Pro Theme by Themeco](https://theme.c
 
 # Changelog
 
+## 1.4.1
+
+-   Updated: Search form text is now controlled by a class and extended to include new text for the 1894 society page
+
 ## 1.4.0
 
 -   Added: Donor pages now support a brief description below the title
