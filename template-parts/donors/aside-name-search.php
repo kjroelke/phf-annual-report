@@ -5,6 +5,8 @@
  * @package KJR_Dev
  */
 
+use KJR_Dev\Donor_Search_Helper;
+$search_handler = new Donor_Search_Helper();
 ?>
 <aside class="container py-lg-5">
 	<h2 class="text-primary mb-2">Find a Name</h2>
@@ -13,7 +15,7 @@
 			<p>Press <kbd>Control+F</kbd> (or <kbd>⌘+F</kbd> on a Mac) to search for your name.</p>
 		</div>
 	</div>
-	<?php if ( get_page_template_slug( get_the_ID() ) === 'templates/donors-list-multi-column.php' ) : ?>
-	<p class="mt-3 px-2 fst-italic mb-0">Names marked “+” are members of our Employee Giving Society. Names marked “◊” have passed. We honor these donors for their contributions.</p>
+	<?php if ( $search_handler->has_message() ) : ?>
+	<p class="mt-3 px-2 fst-italic mb-0"><?php $search_handler->the_message(); ?></p>
 	<?php endif; ?>
 </aside>
